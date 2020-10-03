@@ -18,7 +18,7 @@ GoCV implementation of YOLOv4
 **Download [yolov4.cfg](https://raw.githubusercontent.com/AlexeyAB/darknet/master/cfg/yolov4.cfg)**
 
 ## Preview
-![Preview](https://github.com/gron1gh1/gocv-yolov4/blob/main/detect.jpg)
+![Preview](https://github.com/gron1gh1/gocv-yolov4/blob/main/assets/detect.jpg)
 
 ## Usage
 ```sh
