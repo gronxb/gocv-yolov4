@@ -57,7 +57,7 @@ func PostProcess(frame gocv.Mat, outs *[]gocv.Mat) ([]image.Rectangle, []float32
 // ReadCOCO : Read coco.names
 func ReadCOCO() []string {
 	var classes []string
-	read, _ := os.Open("coco.names")
+	read, _ := os.Open("./assets/coco.names")
 	defer read.Close()
 	for {
 		var t string
@@ -104,7 +104,7 @@ func GetFrame(cap *gocv.VideoCapture) {
 	// Init
 	classes := ReadCOCO()
 
-	net := gocv.ReadNet("yolov4.weight", "yolov4.cfg")
+	net := gocv.ReadNet("./assets/yolov4.weights", "./assets/yolov4.cfg")
 	defer net.Close()
 	net.SetPreferableBackend(gocv.NetBackendType(gocv.NetBackendDefault))
 	net.SetPreferableTarget(gocv.NetTargetType(gocv.NetTargetCPU))
