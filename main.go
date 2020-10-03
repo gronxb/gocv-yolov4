@@ -94,6 +94,9 @@ func Detect(net *gocv.Net, src gocv.Mat, scoreThreshold float32, nmsThreshold fl
 	boxes, confidences, classIds := PostProcess(img, &probs)
 
 	indices := make([]int, 100)
+	if len(boxes) == 0 { // No Classes
+		return src, []string{}
+	}
 	gocv.NMSBoxes(boxes, confidences, scoreThreshold, nmsThreshold, indices)
 
 	return drawRect(img, boxes, classes, classIds, indices)
