@@ -114,6 +114,7 @@ func GetFrame(cap *gocv.VideoCapture) {
 
 	OutputNames := getOutputsNames(&net)
 
+	window := gocv.NewWindow("yolo")
 	for {
 		if ok := cap.Read(&img); !ok {
 			fmt.Printf("Device closed\n")
@@ -124,9 +125,8 @@ func GetFrame(cap *gocv.VideoCapture) {
 		}
 		detectImg, detectClass := Detect(&net, img, 0.45, 0.5, OutputNames, classes)
 		fmt.Printf("Dectect Class : %v\n", detectClass)
-		gocv.IMWrite("original.jpg", img)
-		gocv.IMWrite("detect.jpg", detectImg)
-		gocv.WaitKey(1000)
+		window.IMShow(detectImg)
+		gocv.WaitKey(30)
 	}
 }
 
