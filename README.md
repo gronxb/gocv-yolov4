@@ -9,8 +9,8 @@ GoCV implementation of YOLOv4
 **So the part where the error occurred reflected the Pull Request content.**  
 
 **Used gocv Pull Request**  
-[Add NMSBoxes function](https://github.com/hybridgroup/gocv/pull/732)  
-[Fix the bug at GetLayerNames(), GetUnconnectedOutLayers().](https://github.com/hybridgroup/gocv/pull/736)  
+[Add NMSBoxes function](https://github.com/hybridgroup/gocv/pull/736)  
+[Fix the bug at GetLayerNames(), GetUnconnectedOutLayers().](https://github.com/hybridgroup/gocv/pull/732)  
 
 
 ## Model Download
