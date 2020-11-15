@@ -99,11 +99,11 @@ func Detect(net *gocv.Net, src gocv.Mat, scoreThreshold float32, nmsThreshold fl
 	}
 	gocv.NMSBoxes(boxes, confidences, scoreThreshold, nmsThreshold, indices)
 
-	return drawRect(img, boxes, classes, classIds, indices)
+	return drawRect(src, boxes, classes, classIds, indices)
 }
 
-// GetFrame : Read Frame and Process
-func GetFrame(cap *gocv.VideoCapture) {
+// Process : Read Picture and Process
+func Process(filename string) {
 	// Init
 	classes := ReadCOCO()
 
@@ -112,38 +112,22 @@ func GetFrame(cap *gocv.VideoCapture) {
 	net.SetPreferableBackend(gocv.NetBackendType(gocv.NetBackendDefault))
 	net.SetPreferableTarget(gocv.NetTargetType(gocv.NetTargetCPU))
 
-	img := gocv.NewMat()
-	defer img.Close()
-
 	OutputNames := getOutputsNames(&net)
 
 	window := gocv.NewWindow("yolo")
-	for {
-		if ok := cap.Read(&img); !ok {
-			fmt.Printf("Device closed\n")
-			return
-		}
-		if img.Empty() {
-			continue
-		}
-		detectImg, detectClass := Detect(&net, img, 0.45, 0.5, OutputNames, classes)
-		fmt.Printf("Dectect Class : %v\n", detectClass)
-		window.IMShow(detectImg)
-		gocv.WaitKey(30)
-	}
+	img := gocv.IMRead(filename, gocv.IMReadColor)
+	defer img.Close()
+
+	detectImg, detectClass := Detect(&net, img.Clone(), 0.45, 0.5, OutputNames, classes)
+	defer detectImg.Close()
+
+	fmt.Printf("Dectect Class : %v\n", detectClass)
+	window.IMShow(detectImg)
+	gocv.IMWrite("result.jpg", detectImg)
+	gocv.WaitKey(0)
+
 }
 
 func main() {
-	fmt.Println(os.Args[1])
-	cap, err := gocv.OpenVideoCapture(os.Args[1])
-	if err != nil {
-		fmt.Printf("Error opening capture device")
-		return
-	}
-	defer cap.Close()
-
-	go GetFrame(cap)
-
-	// Time Out
-	select {}
+	Process(os.Args[1])
 }
