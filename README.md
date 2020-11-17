@@ -1,15 +1,21 @@
 # gocv-yolov4
 GoCV implementation of YOLOv4
 
+## Model
+**Download [yolov4.weights](https://github.com/AlexeyAB/darknet/releases/download/darknet_yolo_v3_optimal/yolov4.weights)**  
+**Download [yolov4.cfg](https://raw.githubusercontent.com/AlexeyAB/darknet/master/cfg/yolov4.cfg)**
+
 ## Install
 ```sh
 > go get -u -d gocv.io/x/gocv
 > cd $GOPATH/src/gocv.io/x/gocv
 > make install
+
+# Project Download
+> git clone https://github.com/gron1gh1/gocv-yolov4
+> cd gocv-yolov4
+> wget -O assets/yolov4.weights https://github.com/AlexeyAB/darknet/releases/download/darknet_yolo_v3_optimal/yolov4.weights
 ```
-## Model Download
-**Download [yolov4.weights](https://github.com/AlexeyAB/darknet/releases/download/darknet_yolo_v3_optimal/yolov4.weights)**  
-**Download [yolov4.cfg](https://raw.githubusercontent.com/AlexeyAB/darknet/master/cfg/yolov4.cfg)**
 
 ## Preview
 ```sh
